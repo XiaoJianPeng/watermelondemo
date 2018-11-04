@@ -1,3 +1,6 @@
 rootProject.name = 'AwesomeProject'
 
 include ':app'
+include ':watermelondb'
+project(':watermelondb').projectDir =
+  new File(rootProject.projectDir, '../node_modules/@nozbe/watermelondb/native/android')

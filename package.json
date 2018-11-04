@@ -18,6 +18,7 @@
     "code-push-android": "code-push release-react mobileapp  android  -d Staging --targetBinaryVersion 1.0.0"
   },
   "dependencies": {
+    "@nozbe/watermelondb": "^0.7.0",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4"
   },

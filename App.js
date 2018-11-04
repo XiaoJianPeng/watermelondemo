@@ -7,7 +7,12 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, FlatList} from 'react-native';
+import { Database } from '@nozbe/watermelondb'
+import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite'
+
+import { mySchema } from './src/model/schema'
+import { Post } from './src/model/classes'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,13 +22,81 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+
+const adapter = new SQLiteAdapter({
+  dbName: 'myAwesomeApp', // ⬅️ Give your database a name!
+  schema: mySchema,
+})
+
+const database = new Database({
+  adapter,
+  modelClasses: [
+    Post,
+    // Post, // ⬅️ You'll add Models to Watermelon here
+  ],
+})
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      postsCollection: null,
+      list: []
+    }
+  }
+  componentDidMount() {
+    console.log(1)
+    try {
+      const postsCollection = database.collections.get('posts')
+      this.setState((state) => {
+        return {postsCollection: postsCollection}
+      }, () => {
+        console.log('this.state.posts :', this.state.postsCollection);
+        this.queryList()
+      })
+    } catch (error) {
+      console.warn(error)
+    }
+   
+  }
+
+  queryList = () => {
+    this.state.postsCollection.query().fetch().then((res) => {
+      res = res.map((item) => {
+        return item
+      })
+      console.log(res)
+      this.setState({list: res}, () => {
+        
+      })
+    })
+  }
+
+  onPressLearnMore = () =>{
+    this.state.postsCollection.create(post => {
+      post.title = 'new Title' + new Date().toTimeString()
+      post.body = '重卡深蓝色佛爱好U盾哇哈u'
+    }).then((newPost) => {
+      console.log('newPost', newPost)
+      this.queryList()
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Button
+          onPress={this.onPressLearnMore}
+          title="添加一条数据"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <FlatList
+          data={this.state.list}
+          renderItem={({item}) => <Text style={styles.item}>{item.title}</Text>}
+        />
       </View>
     );
   }
