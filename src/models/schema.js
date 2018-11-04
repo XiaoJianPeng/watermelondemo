@@ -5,6 +5,12 @@ export const mySchema = appSchema({
   tables: [
     // tableSchemas go here...
     tableSchema({
+      name: 'blogs',
+      columns: [
+        { name:'name', type: 'string' }
+      ]
+    }),
+    tableSchema({
       name: 'posts',
       columns: [
         { name: 'title', type: 'string' },
@@ -15,14 +21,13 @@ export const mySchema = appSchema({
         { name: 'updated_at', type: 'number' },
       ]
     }),
-    // tableSchema({
-    //   name: 'comments',
-    //   columns: [
-    //     { name: 'body', type: 'string' },
-    //     { name: 'post_id', type: 'string', isIndexed: true },
-    //     { name: 'created_at', type: 'number' },
-    //     { name: 'updated_at', type: 'number' },
-    //   ]
-    // }),
+    tableSchema({
+      name: 'comments',
+      columns: [
+        { name: 'body', type: 'string' },
+        { name: 'post_id', type: 'string', isIndexed: true },
+        { name: 'is_nasty', type: 'boolean' },
+      ]
+    }),
   ]
 })

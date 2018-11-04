@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "@nozbe/watermelondb": "^0.7.0",
+    "@nozbe/with-observables": "^1.0.2",
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4"
+    "react-native": "0.57.4",
+    "react-navigation": "^2.18.2"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",

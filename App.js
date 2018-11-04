@@ -12,7 +12,7 @@ import { Database } from '@nozbe/watermelondb'
 import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite'
 
 import { mySchema } from './src/model/schema'
-import { Post } from './src/model/classes'
+import Post from './src/models/Post'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,18 +23,18 @@ const instructions = Platform.select({
 
 type Props = {};
 
-const adapter = new SQLiteAdapter({
-  dbName: 'myAwesomeApp', // ⬅️ Give your database a name!
-  schema: mySchema,
-})
+// const adapter = new SQLiteAdapter({
+//   dbName: 'myAwesomeApp', // ⬅️ Give your database a name!
+//   schema: mySchema,
+// })
 
-const database = new Database({
-  adapter,
-  modelClasses: [
-    Post,
-    // Post, // ⬅️ You'll add Models to Watermelon here
-  ],
-})
+// global.database = new Database({
+//   adapter,
+//   modelClasses: [
+//     Post,
+//     // Post, // ⬅️ You'll add Models to Watermelon here
+//   ],
+// })
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -72,9 +72,16 @@ export default class App extends Component {
   }
 
   onPressLearnMore = () =>{
-    this.state.postsCollection.create(post => {
-      post.title = 'new Title' + new Date().toTimeString()
-      post.body = '重卡深蓝色佛爱好U盾哇哈u'
+    const data = {
+      title: 'new Title' + new Date().getTime(),
+      body: '重卡深蓝色佛爱好U盾哇哈u' + new Date().toDateString(),
+      subtitle: '子标题'
+    }
+    this.state.postsCollection.create((post) => {
+      for(const key in data) {
+        console.log('key', key)
+        post[key] = data[key]
+      }
     }).then((newPost) => {
       console.log('newPost', newPost)
       this.queryList()
