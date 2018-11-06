@@ -4359,6 +4359,10 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-prompt-android@^0.3.4:
+  version "0.3.4"
+  resolved "http://registry.npm.taobao.org/react-native-prompt-android/download/react-native-prompt-android-0.3.4.tgz#5f9d55246dac2b419dd4bce0077b41143745288b"
+
 react-native-safe-area-view@0.11.0:
   version "0.11.0"
   resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"

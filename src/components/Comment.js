@@ -15,6 +15,6 @@ const RawComment = ({ comment }) => (
 
 const enhance = withObservables(['comment'], ({ comment }) => ({
   comment: comment.observe(),
-}))
+})) 
 
 export default enhance(RawComment)

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "nox": "adb connect 127.0.0.1:62001",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "clean": "cd android && ./gradlew clean",
@@ -22,6 +23,7 @@
     "@nozbe/with-observables": "^1.0.2",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
+    "react-native-prompt-android": "^0.3.4",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {

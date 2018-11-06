@@ -16,12 +16,11 @@ const adapter = new SQLiteAdapter({
   schema: mySchema,
 })
 
-const database = new Database({
+global.database = new Database({
   adapter,
   modelClasses: [Blog, Post, Comment],
 })
 
 
 const Navigation = createNavigation({ database })
-
 AppRegistry.registerComponent(appName, () => Navigation);

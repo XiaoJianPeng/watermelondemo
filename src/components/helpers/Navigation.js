@@ -2,9 +2,9 @@ import React from 'react'
 import { createStackNavigator } from 'react-navigation'
 
 import Root from '../Root'
-// import Blog from '../Blog'
-// import ModerationQueue from '../ModerationQueue'
-// import Post from '../Post'
+import Blog from '../Blog'
+import ModerationQueue from '../ModerationQueue'
+import Post from '../Post'
 
 export const createNavigation = props =>
   createStackNavigator(
@@ -17,24 +17,24 @@ export const createNavigation = props =>
         },
         navigationOptions: { title: 'Blogs' },
       },
-      // Blog: {
-      //   screen: ({ navigation }) => (
-      //     <Blog blog={navigation.state.params.blog} navigation={navigation} />
-      //   ),
-      //   navigationOptions: ({ navigation }) => ({
-      //     title: navigation.state.params.blog.name,
-      //   }),
-      // },
-      // ModerationQueue: {
-      //   screen: ({ navigation }) => <ModerationQueue blog={navigation.state.params.blog} />,
-      //   navigationOptions: { title: 'Moderation Queue' },
-      // },
-      // Post: {
-      //   screen: ({ navigation }) => <Post post={navigation.state.params.post} />,
-      //   navigationOptions: ({ navigation }) => ({
-      //     title: navigation.state.params.post.title,
-      //   }),
-      // },
+      Blog: {
+        screen: ({ navigation }) => (
+          <Blog blog={navigation.state.params.blog} navigation={navigation} />
+        ),
+        navigationOptions: ({ navigation }) => ({
+          title: navigation.state.params.blog.name,
+        }),
+      },
+      ModerationQueue: {
+        screen: ({ navigation }) => <ModerationQueue blog={navigation.state.params.blog} />,
+        navigationOptions: { title: 'Moderation Queue' },
+      },
+      Post: {
+        screen: ({ navigation }) => <Post post={navigation.state.params.post} />,
+        navigationOptions: ({ navigation }) => ({
+          title: navigation.state.params.post.title,
+        }),
+      },
     },
     {
       initialRouteName: 'Root',

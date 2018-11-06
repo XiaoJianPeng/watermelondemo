@@ -6,13 +6,14 @@ import Comment from './Comment'
 import styles from './helpers/styles'
 import prompt from './helpers/prompt'
 import Button from './helpers/Button'
-import { extractId } from '../utils'
 
 const renderComment = ({ item }) => <Comment comment={item} key={item.id} />
 
 class Post extends Component {
   addComment = async () => {
+    console.log('评论')
     const comment = await prompt('Write a comment')
+    console.log('comment :', comment);
     await this.props.post.addComment(comment)
   }
 
@@ -27,8 +28,7 @@ class Post extends Component {
           <Text style={styles.subtitle}>Comments ({comments.length})</Text>
           <FlatList style={styles.marginContainer}
             data={comments}
-            renderItem={renderComment}
-            keyExtractor={extractId} />
+            renderItem={renderComment} />
           <Button style={styles.button} title="Add comment" onPress={this.addComment} />
         </SafeAreaView>
       </ScrollView>

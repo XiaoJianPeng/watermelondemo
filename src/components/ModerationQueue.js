@@ -4,7 +4,6 @@ import withObservables from '@nozbe/with-observables'
 
 import Comment from './Comment'
 import styles from './helpers/styles'
-import { extractId } from '../utils'
 
 const renderComment = ({ item }) => <Comment comment={item} key={item.id} />
 
@@ -13,7 +12,7 @@ const ModerationQueue = ({ blog, nastyComments }) => (
     <SafeAreaView>
       <Text style={styles.title}>Moderation queue for {blog.name}</Text>
       <Text style={styles.subtitle}>Nasty comments ({nastyComments.length})</Text>
-      <FlatList data={nastyComments} renderItem={renderComment} keyExtractor={extractId} />
+      <FlatList data={nastyComments} renderItem={renderComment} />
     </SafeAreaView>
   </ScrollView>
 )
